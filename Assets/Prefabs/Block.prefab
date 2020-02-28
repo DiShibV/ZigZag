@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2836308378585064470}
   - component: {fileID: 6487314104175943200}
   - component: {fileID: 665152467872391897}
+  - component: {fileID: 683446614421732862}
   m_Layer: 0
-  m_Name: Surface
+  m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &683446614421732862
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227176651084797445}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.12, y: 2.1957207, z: 1.12}
+  m_Center: {x: 0, y: 1.0974636, z: 0}
 --- !u!1 &1227176652769058052
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2836308377450393367
 Transform:
   m_ObjectHideFlags: 0
