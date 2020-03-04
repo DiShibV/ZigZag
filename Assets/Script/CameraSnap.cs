@@ -14,10 +14,10 @@ public class CameraSnap : MonoBehaviour
 
     private void Update()
     {
-        AcceptPositionCamera();
+        ApplyPositionCamera();
     }
 
-    private void AcceptPositionCamera(){
+    private void ApplyPositionCamera(){
         _centerForCamera.position = Vector3.forward * _target.position.z;
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BlockMovement))]
 public class BlockSpawner : MonoBehaviour
 {
-    private List<Transform> _createdBlocks = new List<Transform>();
+    private List<Block> _createdBlocks = new List<Block>();
     [SerializeField] private byte _countMaxBlock;
     [SerializeField] private GameObject _prefabBlock;
     private Transform _parentBlock;
@@ -35,20 +35,20 @@ public class BlockSpawner : MonoBehaviour
         _parentBlock.SetParent(transform, false);
     }
 
-    private Transform CreateStartBlock(){
+    private Block CreateStartBlock(){
         var block = CreateBlock();
         _blockMovement.ApplyStartPosition(block);
         return block;
     }
 
-    private Transform CreateNextBlock(){
+    private Block CreateNextBlock(){
         var block = CreateBlock();
         _blockMovement.ApplyNextPosition(block);
         return block;
     }
 
-    private Transform CreateBlock(){
-        return Instantiate(_prefabBlock, _parentBlock).transform;
+    private Block CreateBlock(){
+        return Instantiate(_prefabBlock, _parentBlock).GetComponent<Block>();
     }
 
     public void MoveFirstElementBlockToEnd(){
@@ -57,7 +57,7 @@ public class BlockSpawner : MonoBehaviour
         _createdBlocks.Add(tmp);
     }
 
-    public Transform GetLastElementBlock(){
+    public Block GetLastElementBlock(){
         return _createdBlocks[_countMaxBlock - 1];
     }
 }
