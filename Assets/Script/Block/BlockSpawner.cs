@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BlockMovement))]
@@ -8,6 +7,7 @@ public class BlockSpawner : MonoBehaviour
     private List<Block> _createdBlocks = new List<Block>();
     [SerializeField] private byte _countMaxBlock;
     [SerializeField] private GameObject _prefabBlock;
+    [SerializeField] private Block _blockStart;
     private Transform _parentBlock;
     private BlockMovement _blockMovement;
 
@@ -17,7 +17,8 @@ public class BlockSpawner : MonoBehaviour
         CreateArrayBlocks();
     }
 
-    public void RestartBlocks(){
+    public void RetryBlocks(){
+        _blockStart.ResetAnimator();
         _blockMovement.ApplyStartPosition(_createdBlocks[0]);
         for (byte i = 1; i < _countMaxBlock; i++)
             _blockMovement.ApplyNextPosition(_createdBlocks[i]);

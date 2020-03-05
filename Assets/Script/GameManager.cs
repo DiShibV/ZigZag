@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static bool isStart { get; private set; }
+    private static int _scoreCrystal;
     [SerializeField] private Player player;
+    [SerializeField] private BlockSpawner blockSpawner;
 
-    private void Start()
-    {
-        instance = this;
-    }
+    private void Start () {
+        if (!instance)
+            instance = this;
+        else
+            Destroy(gameObject);
 
-    private void Update()
-    {
-
+        DontDestroyOnLoad(gameObject);
     }
 
     public static void StartGame(){
@@ -25,11 +24,19 @@ public class GameManager : MonoBehaviour
     public void GameOver(Direction direction){
         isStart = false;
         player.AddForce(direction);
-        player.enabled = false;
+        player.Disable();
+        UIManager.ShowRetry();
     }
 
-    public static void Restart(){
+    public static void AddScoreCrystal(){
+        _scoreCrystal ++;
+        UIManager.ApplyScoreCrystal(_scoreCrystal);
+    }
 
+    public void Retry(){
+        player.Reset();
+        blockSpawner.RetryBlocks();
+        CameraSnap.Retry();
     }
 
 }

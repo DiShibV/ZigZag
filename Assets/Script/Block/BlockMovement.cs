@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 [RequireComponent(typeof(BlockSpawner))]
 public class BlockMovement : MonoBehaviour
@@ -25,7 +22,6 @@ public class BlockMovement : MonoBehaviour
         if(!CheckOutsideLastBlock()) return;
         _blockSpawner.MoveFirstElementBlockToEnd();
         ApplyNextPosition(_blockSpawner.GetLastElementBlock());
-        _lastBlock.ResetAnimator();
     }
 
     private bool CheckOutsideLastBlock(){
@@ -35,6 +31,7 @@ public class BlockMovement : MonoBehaviour
     public void ApplyStartPosition(Block block){
         block.transform.localPosition = START_POINT;
         _lastBlock = block;
+        ResetBlock();
     }
 
     public void ApplyNextPosition(Block block){
@@ -42,6 +39,11 @@ public class BlockMovement : MonoBehaviour
         block.transform.localPosition = GetNextPosition(ref direction);
         _lastBlock.ApplyActiveTriggers(direction);
         _lastBlock = block;
+        ResetBlock();
+    }
+
+    private void ResetBlock(){
+        _lastBlock.Reset();
     }
 
     private Direction RandomDirection(){

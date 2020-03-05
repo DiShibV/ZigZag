@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Block : MonoBehaviour, ICameraOnTrigger
 {
     [SerializeField] private GameObject[] LeftAndForward;
-    private Animator _animatorBlock;
+    [SerializeField] private Crystal crystal;
+    private Animator _animator;
 
-    private void Start() {
-        _animatorBlock = GetComponent<Animator>();
+    private void Awake() {
+        _animator = GetComponent<Animator>();
     }
 
     public void ApplyActiveTriggers(Direction direction){
@@ -17,12 +16,17 @@ public class Block : MonoBehaviour, ICameraOnTrigger
         LeftAndForward[(int)direction].SetActive(true);
     }
 
+    public void Reset(){
+        crystal.Show();
+        ResetAnimator();
+    }
+
     public void ResetAnimator() {
-        _animatorBlock.enabled = false;
-        _animatorBlock.Rebind();
+        _animator.enabled = false;
+        _animator.Rebind();
     }
 
     public void OnTrigger() {
-         _animatorBlock.enabled = true;
+         _animator.enabled = true;
     }
 }

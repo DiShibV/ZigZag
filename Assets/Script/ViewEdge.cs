@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class ViewEdge : MonoBehaviour
 {
-    private const float RADIUS_BLOCK = 0.7071002f;
+    private const float DIAMETER_BLOCK = 1.41f;
     private static float _edgeHorizontal;
 
     private void Awake()
@@ -14,7 +14,7 @@ public class ViewEdge : MonoBehaviour
     }
 
     private void CalculateEdgeHorizontal(){
-        _edgeHorizontal = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(1, 0.5f, 0)).x - RADIUS_BLOCK;
+        _edgeHorizontal = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(1, 0.5f, 0)).x - DIAMETER_BLOCK;
     }
 
     public static bool CheckOverEdge(float horizontal){

@@ -25,25 +25,36 @@ public class Player : MonoBehaviour
             ChangeDirection();
             GameManager.StartGame();
         }
-        PlayerMove();
+        Move();
     }
 
     private void ChangeDirection(){
         _directionMove = GlobalDirection.GetVectorInverse(ref _direction);
     }
 
-    private void PlayerMove(){
+    private void Move(){
         if(GameManager.isStart)
             transform.Translate(_directionMove * Time.deltaTime * _speed, Space.Self);
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(!GameManager.isStart) return;
         var trigger = other.GetComponent<IPlayerOnTrigger>();
         if(trigger != null){
             trigger.OnTrigger();
         }
+    }
+
+    public void Disable(){
+        enabled = false;
+    }
+
+    public void Reset(){
+        _direction = Direction.Left;
+        _player.isKinematic = true;
+        transform.localPosition = Vector3.zero;
+        enabled = true;
     }
 
     public void AddForce(Direction direction){

@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraSnap : MonoBehaviour
 {
     [SerializeField] private Transform _target;
     private Transform _centerForCamera;
+    private static CameraSnap instance;
 
     private void Start()
     {
+        instance = this;
         _centerForCamera = transform;
     }
 
@@ -18,7 +18,12 @@ public class CameraSnap : MonoBehaviour
     }
 
     private void ApplyPositionCamera(){
-        _centerForCamera.position = Vector3.forward * _target.position.z;
+        if(GameManager.isStart)
+            _centerForCamera.position = Vector3.forward * _target.position.z;
+    }
+
+    public static void Retry(){
+        instance.transform.position = Vector3.zero;
     }
 
 }
