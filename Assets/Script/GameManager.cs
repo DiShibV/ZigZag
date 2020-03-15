@@ -5,8 +5,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static bool isStart { get; private set; }
     private static int _scoreCrystal;
-    [SerializeField] private Player player;
-    [SerializeField] private BlockSpawner blockSpawner;
+    [SerializeField] private Player _player;
+    [SerializeField] private BlockSpawner _blockSpawner;
+    [SerializeField] private CameraSnap _cameraSnap;
+    [SerializeField] private UIManager _uiManager;
 
     private void Start () {
         if (!instance)
@@ -17,26 +19,29 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public static void StartGame(){
+    public void PlayGame(){
         isStart = true;
+        _player.Enable();
+        _cameraSnap.Enable();
     }
 
     public void GameOver(Direction direction){
         isStart = false;
-        player.AddForce(direction);
-        player.Disable();
-        UIManager.ShowRetry();
+        _cameraSnap.Disable();
+        _player.Disable(direction);
+        _uiManager.ShowRetry();
     }
 
     public static void AddScoreCrystal(){
         _scoreCrystal ++;
-        UIManager.ApplyScoreCrystal(_scoreCrystal);
+        instance._uiManager.ApplyScoreCrystal(_scoreCrystal);
     }
 
     public void Retry(){
-        player.Reset();
-        blockSpawner.RetryBlocks();
-        CameraSnap.Retry();
+        _player.Retry();
+        _blockSpawner.RetryBlocks();
+        _cameraSnap.Retry();
+        _uiManager.ShowMainMenu();
     }
 
 }

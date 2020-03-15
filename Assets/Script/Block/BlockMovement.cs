@@ -1,18 +1,12 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(BlockSpawner))]
 public class BlockMovement : MonoBehaviour
 {
     private readonly Vector3 START_POINT = new Vector3(-1,0,2);
     [SerializeField] private Transform _pointForCheckOutsideLastBlock;
+    [SerializeField] private BlockSpawner _blockSpawner;
     private Block _lastBlock;
     private Vector3 _lastLocalPosition => _lastBlock.transform.localPosition;
-    private BlockSpawner _blockSpawner;
-
-    private void Start()
-    {
-        _blockSpawner = GetComponent<BlockSpawner>();
-    }
 
     private void Update(){
         ChangeParametersBlock();

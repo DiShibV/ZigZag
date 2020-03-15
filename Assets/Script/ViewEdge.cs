@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
 public class ViewEdge : MonoBehaviour
 {
+    [SerializeField] private Camera _camera;
     private const float DIAMETER_BLOCK = 1.41f;
     private static float _edgeHorizontal;
 
@@ -14,7 +14,7 @@ public class ViewEdge : MonoBehaviour
     }
 
     private void CalculateEdgeHorizontal(){
-        _edgeHorizontal = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(1, 0.5f, 0)).x - DIAMETER_BLOCK;
+        _edgeHorizontal = _camera.ViewportToWorldPoint(new Vector3(1, 0.5f, 0)).x - DIAMETER_BLOCK;
     }
 
     public static bool CheckOverEdge(float horizontal){

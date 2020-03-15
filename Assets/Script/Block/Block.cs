@@ -4,11 +4,7 @@ public class Block : MonoBehaviour, ICameraOnTrigger
 {
     [SerializeField] private GameObject[] LeftAndForward;
     [SerializeField] private Crystal crystal;
-    private Animator _animator;
-
-    private void Awake() {
-        _animator = GetComponent<Animator>();
-    }
+    [SerializeField] private Animator _animator;
 
     public void ApplyActiveTriggers(Direction direction){
         LeftAndForward[0].SetActive(false);

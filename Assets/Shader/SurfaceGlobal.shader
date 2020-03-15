@@ -1,4 +1,4 @@
-﻿Shader "SpherePlayer" {
+﻿Shader "SurfaceGlobal" {
     Properties {
         _Color ("Color", Color) = (1,1,1,1)
         _Opacity("Opacity", Range(0, 1)) = 1
