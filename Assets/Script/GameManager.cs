@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraSnap _cameraSnap;
     [SerializeField] private UIManager _uiManager;
   //TEST
+
+  //TEST22
+
+
     private void Start () {
         if (!instance)
             instance = this;
