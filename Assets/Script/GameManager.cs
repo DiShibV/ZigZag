@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BlockSpawner _blockSpawner;
     [SerializeField] private CameraSnap _cameraSnap;
     [SerializeField] private UIManager _uiManager;
-
+  //TEST
     private void Start () {
         if (!instance)
             instance = this;
